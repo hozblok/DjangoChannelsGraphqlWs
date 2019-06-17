@@ -1,0 +1,25 @@
+language: python
+python:
+  - "3.7"
+dist: xenial
+matrix:
+  include:
+  - os: linux
+    env: PYTHON=3.7
+before_install:
+- |
+  pip install --progress-bar off poetry
+install:
+- poetry install
+- poetry build
+script:
+- poetry run pytest --cov-report=term --cov-report=html
+stages:
+  - test
+  - lint
+jobs:
+  - stage: lint
+  script:
+    - pyflakes channels tests
+    - black --check --diff django-channels-graphql-ws
+    - isort --check-only --diff --recursive django-channels-graphql-ws
