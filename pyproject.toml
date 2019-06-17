@@ -55,6 +55,7 @@ graphene_django = "*"
 graphql-core = "*"
 msgpack = "*"
 rx = "*"
+pywin32 = { version = "^224.0", platform = "win32" }
 
 [tool.poetry.dev-dependencies]
 # Black is still in beta, so allow prereleases.
